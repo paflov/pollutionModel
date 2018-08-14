@@ -16,7 +16,9 @@ end
 to setup-turtles
   create-turtles agentNumber [
     set color red
+    set shape "person"
     setxy random-xcor random-ycor
+    set punished 0
   ]
 end
 
@@ -32,8 +34,8 @@ to go
   moveAgents
   pollute
   applyPunishment
-  colorizePatches
   clean
+  colorizePatches
   tick
 end
 
@@ -50,10 +52,19 @@ end
 ;; TODO how does the perception of waste around affect the agents pollution behviour?
 to pollute
   ask turtles [
-    if (random 100 < pollutionLikelyness) [
-      if (pollution < 100 ) [
+
+    let surroundingWaste mean [pollution] of patches in-cone 3 360
+
+    ifelse (surroundingWaste > 50) [
+       set pollution pollution + wasteAmount
+    ] [
+      if (random 100 < pollutionLikelyness) [
         set pollution pollution + wasteAmount
       ]
+    ]
+
+    if (pollution > 100) [
+      set pollution 100
     ]
   ]
 end
@@ -68,7 +79,7 @@ end
 to clean
   ask patches [
     set pollution pollution - cleaningAmount
-    if pollution <= 0 [
+    if pollution < 0 [
       set pollution 0
     ]
   ]
@@ -117,7 +128,7 @@ agentNumber
 agentNumber
 0
 500
-13.0
+73.0
 1
 1
 NIL
@@ -132,7 +143,7 @@ pollutionLikelyness
 pollutionLikelyness
 0
 100
-51.0
+87.0
 1
 1
 NIL
@@ -162,7 +173,7 @@ wasteAmount
 wasteAmount
 0
 20
-12.0
+2.0
 1
 1
 NIL
@@ -226,7 +237,7 @@ cleaningAmount
 cleaningAmount
 0
 10
-0.0
+0.09
 0.01
 1
 NIL
