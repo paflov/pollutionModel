@@ -2,7 +2,7 @@ patches-own [
   pollution ;; 0 to 100 percentage of pollution of a patch
 ]
 turtles-own [
-  punished ;; not in use rigt now
+  punished
 ]
 
 ;; setup functions
@@ -33,9 +33,9 @@ end
 to go
   moveAgents
   pollute
-  applyPunishment
   clean
   colorizePatches
+  colorizeTurtles
   tick
 end
 
@@ -54,12 +54,19 @@ to pollute
   ask turtles [
 
     let surroundingWaste mean [pollution] of patches in-cone 3 360
+    let threshold 50 + 1 * punished;
 
-    ifelse (surroundingWaste > 50) [
+    if (threshold > 100) [
+      set threshold 100
+    ]
+
+    ifelse (surroundingWaste > threshold) [
        set pollution pollution + wasteAmount
+       maybeCatch
     ] [
-      if (random 100 < pollutionLikelyness) [
+      if (random 100 < pollutionLikelyness / (punished + 1)) [
         set pollution pollution + wasteAmount
+        maybeCatch
       ]
     ]
 
@@ -69,9 +76,9 @@ to pollute
   ]
 end
 
-;; TODO what is going to happen here?
-to applyPunishment
-  ask turtles [
+to maybeCatch
+  if (random 100 > 20) [
+    set punished punished + 1
   ]
 end
 
@@ -89,6 +96,13 @@ end
 to colorizePatches
   ask patches [
     set pcolor 39.9 - (pollution * 0.99 / 10)
+  ]
+end
+
+to colorizeTurtles
+  ask turtles [
+    set label punished
+    set label-color black
   ]
 end
 @#$#@#$#@
@@ -237,7 +251,7 @@ cleaningAmount
 cleaningAmount
 0
 1
-0.13
+0.04
 0.01
 1
 NIL
