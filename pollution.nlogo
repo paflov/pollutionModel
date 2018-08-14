@@ -128,7 +128,7 @@ agentNumber
 agentNumber
 0
 500
-73.0
+500.0
 1
 1
 NIL
@@ -236,8 +236,8 @@ SLIDER
 cleaningAmount
 cleaningAmount
 0
-10
-0.09
+1
+0.13
 0.01
 1
 NIL
@@ -262,6 +262,24 @@ parameters
 12
 0.0
 1
+
+PLOT
+663
+227
+863
+377
+Mean Pollutio state
+ticks
+m-Pollution
+0.0
+10.0
+0.0
+100.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -10402772 true "" "plot mean [pollution] of patches"
 
 @#$#@#$#@
 ## WHAT IS IT?
