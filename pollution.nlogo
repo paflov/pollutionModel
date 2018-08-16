@@ -33,6 +33,9 @@ end
 
 ;; main digest cycle
 to go
+  if (ticks >= 1000) [
+    stop
+  ]
   moveAgents
   pollute
   clean
@@ -141,7 +144,7 @@ agentNumber
 agentNumber
 0
 500
-118.0
+300.0
 1
 1
 NIL
@@ -156,7 +159,7 @@ wasteAmount
 wasteAmount
 0
 20
-16.0
+15.0
 1
 1
 NIL
@@ -205,7 +208,7 @@ cleaningAmount
 cleaningAmount
 0
 0.1
-0.01
+0.02
 0.01
 1
 NIL
@@ -277,7 +280,7 @@ surroundingWasteWeight
 surroundingWasteWeight
 0
 1
-1.0
+0.0
 0.01
 1
 NIL
@@ -292,7 +295,7 @@ punishedCounterWeight
 punishedCounterWeight
 0
 1
-0.0
+0.6
 0.01
 1
 NIL
@@ -663,6 +666,25 @@ NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="30" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <metric>mean [pollution] of patches</metric>
+    <steppedValueSet variable="punishedTurtlesWeight" first="0" step="0.25" last="1"/>
+    <steppedValueSet variable="surroundingWasteWeight" first="0" step="0.25" last="1"/>
+    <steppedValueSet variable="punishedCounterWeight" first="0" step="0.25" last="1"/>
+    <enumeratedValueSet variable="cleaningAmount">
+      <value value="0.02"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="agentNumber">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="wasteAmount">
+      <value value="15"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
