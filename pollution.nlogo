@@ -61,7 +61,10 @@ to pollute
 
 
     ; total probability of polluting
-    let pollutionProbability (surroundingWaste + (punished / (ticks + 1) * 100) + (punishedTurtles / count turtlesAround * 100)) / 3
+    let pollutionProbability (surroundingWasteWeight * surroundingWaste + punishedCounterWeight * (punished / (ticks + 1) * 100) + punishedTurtlesWeight * (punishedTurtles / count turtlesAround * 100))
+    ifelse pollutionProbability > 100 [set pollutionProbability 100] [
+      if pollutionProbability < 0 [set pollutionProbability 0]
+    ]
 
     if (pollutionProbability > random-float 100) [
        set pollution pollution + wasteAmount
@@ -155,7 +158,7 @@ pollutionLikelyness
 pollutionLikelyness
 0
 100
-69.0
+45.0
 1
 1
 NIL
@@ -185,7 +188,7 @@ wasteAmount
 wasteAmount
 0
 20
-7.0
+20.0
 1
 1
 NIL
@@ -249,7 +252,7 @@ cleaningAmount
 cleaningAmount
 0
 1
-0.5
+0.05
 0.01
 1
 NIL
@@ -278,8 +281,8 @@ parameters
 PLOT
 663
 227
-863
-377
+970
+496
 Mean Pollutio state
 ticks
 m-Pollution
@@ -293,6 +296,79 @@ true
 PENS
 "pollution" 1.0 0 -10402772 true "" "plot mean [pollution] of patches"
 "punish" 1.0 0 -14070903 true "" "plot mean [punished / (ticks + 1) * 100 ]  of turtles"
+
+PLOT
+977
+226
+1316
+495
+punished %
+NIL
+NIL
+0.0
+10.0
+0.0
+100.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot (count turtles with [punished > 0] * 100) / count turtles"
+
+TEXTBOX
+1473
+30
+1623
+48
+Probability weights
+13
+0.0
+1
+
+SLIDER
+1473
+77
+1692
+110
+surroundingWasteWeight
+surroundingWasteWeight
+0
+1
+1.0
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+1476
+126
+1686
+159
+punishedCounterWeight
+punishedCounterWeight
+-1
+0
+-0.28
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+1484
+204
+1688
+237
+punishedTurtlesWeight
+punishedTurtlesWeight
+0
+100
+50.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -640,7 +716,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.4
+NetLogo 6.0.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
