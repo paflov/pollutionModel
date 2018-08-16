@@ -295,7 +295,7 @@ punishedCounterWeight
 punishedCounterWeight
 0
 1
-0.6
+0.75
 0.01
 1
 NIL
@@ -319,43 +319,19 @@ HORIZONTAL
 @#$#@#$#@
 ## WHAT IS IT?
 
-Social Influence vs. governmental punishment - influence on street pollution
+### Social influence versus punishment: A comparism of the power between individual perceptions of the environment and police punishment
 
-assumtions:
-- polltion of patches make it more likely to pollute
+This model investigates the behavioral dynamics and individual perceptions underlying the process of environmental pollution. In particular, it focuses on the effect police punishment and social influence, the perception to which degree the individual environment is polluted, on the individual's tendency to contribute to the environmental pollution. Our analysis shows... This implies that ...
 
 
-## HOW IT WORKS
-
-(what rules the agents use to create the overall behavior of the model)
-
-## HOW TO USE IT
-
-(how to use the model, including a description of each of the items in the Interface tab)
-
-## THINGS TO NOTICE
-
-(suggested things for the user to notice while running the model)
-
-## THINGS TO TRY
-
-(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
-
-## EXTENDING THE MODEL
-
-(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
-
-## NETLOGO FEATURES
-
-(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
-
-## RELATED MODELS
-
-(models in the NetLogo Models Library and elsewhere which are of related interest)
 
 ## CREDITS AND REFERENCES
 
-(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
+Paola Zambrano
+Hanna Post
+Lea Rüsch
+Philipp Franck
+Toni Perello
 @#$#@#$#@
 default
 true
