@@ -61,8 +61,8 @@ to pollute
 
 
     ; total probability of polluting
-    let pollutionProbability (surroundingWasteWeight * surroundingWaste +
-      punishedCounterWeight * (punished / (ticks + 1) * 100) +
+    let pollutionProbability (surroundingWasteWeight * surroundingWaste -
+      punishedCounterWeight * (punished / (ticks + 1) * 100) -
       punishedTurtlesWeight * (punishedTurtles / count turtlesAround * 100))
     ifelse pollutionProbability > 100 [set pollutionProbability 100] [
       if pollutionProbability < 0 [set pollutionProbability 0]
@@ -154,7 +154,7 @@ wasteAmount
 wasteAmount
 0
 20
-13.0
+16.0
 1
 1
 NIL
@@ -203,7 +203,7 @@ cleaningAmount
 cleaningAmount
 0
 0.1
-0.0
+0.01
 0.01
 1
 NIL
@@ -275,7 +275,7 @@ surroundingWasteWeight
 surroundingWasteWeight
 0
 1
-0.86
+0.0
 0.01
 1
 NIL
@@ -288,24 +288,24 @@ SLIDER
 131
 punishedCounterWeight
 punishedCounterWeight
--1
 0
--0.37
+1
+1.0
 0.01
 1
 NIL
 HORIZONTAL
 
 SLIDER
-887
+886
 141
-1105
+1104
 174
 punishedTurtlesWeight
 punishedTurtlesWeight
--1
 0
--0.39
+1
+1.0
 0.01
 1
 NIL
