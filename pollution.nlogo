@@ -61,25 +61,21 @@ to pollute
 
 
     ; total probability of polluting
-    let pollutionProbability (surroundingWasteWeight * surroundingWaste + punishedCounterWeight * (punished / (ticks + 1) * 100) + punishedTurtlesWeight * (punishedTurtles / count turtlesAround * 100))
+    let pollutionProbability (surroundingWasteWeight * surroundingWaste +
+      punishedCounterWeight * (punished / (ticks + 1) * 100) +
+      punishedTurtlesWeight * (punishedTurtles / count turtlesAround * 100))
     ifelse pollutionProbability > 100 [set pollutionProbability 100] [
       if pollutionProbability < 0 [set pollutionProbability 0]
     ]
 
     if (pollutionProbability > random-float 100) [
        set pollution pollution + wasteAmount
-       maybeCatch
+       set punished punished + 1
     ]
 
     if (pollution > 100) [
       set pollution 100
     ]
-  ]
-end
-
-to maybeCatch
-  if (random 100 > 20) [
-    set punished punished + 1
   ]
 end
 
@@ -143,7 +139,7 @@ agentNumber
 agentNumber
 0
 500
-500.0
+118.0
 1
 1
 NIL
@@ -158,7 +154,7 @@ wasteAmount
 wasteAmount
 0
 20
-20.0
+13.0
 1
 1
 NIL
@@ -279,7 +275,7 @@ surroundingWasteWeight
 surroundingWasteWeight
 0
 1
-0.99
+0.86
 0.01
 1
 NIL
@@ -294,7 +290,7 @@ punishedCounterWeight
 punishedCounterWeight
 -1
 0
--0.51
+-0.37
 0.01
 1
 NIL
@@ -309,7 +305,7 @@ punishedTurtlesWeight
 punishedTurtlesWeight
 -1
 0
--0.5
+-0.39
 0.01
 1
 NIL
