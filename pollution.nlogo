@@ -10,6 +10,8 @@ to setup
   clear-all
   setup-turtles
   setup-patches
+  colorizePatches
+  colorizeTurtles
   reset-ticks
 end
 
@@ -25,7 +27,7 @@ end
 to setup-patches
   ask patches [
     set pcolor 39.9
-    set pollution 0
+    set pollution random 10
   ]
 end
 
@@ -54,20 +56,16 @@ to pollute
   ask turtles [
 
     let surroundingWaste mean [pollution] of patches in-cone 3 360
-    let threshold 50 + 1 * punished;
+    let turtlesAround turtles in-cone 3 360
+    let punishedTurtles count turtlesAround with [punished > 0]
 
-    if (threshold > 100) [
-      set threshold 100
-    ]
 
-    ifelse (surroundingWaste > threshold) [
+    ; total probability of polluting
+    let pollutionProbability (surroundingWaste + (punished / (ticks + 1) * 100) + (punishedTurtles / count turtlesAround * 100)) / 3
+
+    if (pollutionProbability > random-float 100) [
        set pollution pollution + wasteAmount
        maybeCatch
-    ] [
-      if (random 100 < pollutionLikelyness / (punished + 1)) [
-        set pollution pollution + wasteAmount
-        maybeCatch
-      ]
     ]
 
     if (pollution > 100) [
@@ -157,7 +155,7 @@ pollutionLikelyness
 pollutionLikelyness
 0
 100
-87.0
+69.0
 1
 1
 NIL
@@ -187,7 +185,7 @@ wasteAmount
 wasteAmount
 0
 20
-2.0
+7.0
 1
 1
 NIL
@@ -251,7 +249,7 @@ cleaningAmount
 cleaningAmount
 0
 1
-0.04
+0.5
 0.01
 1
 NIL
@@ -290,10 +288,11 @@ m-Pollution
 0.0
 100.0
 true
-false
+true
 "" ""
 PENS
-"default" 1.0 0 -10402772 true "" "plot mean [pollution] of patches"
+"pollution" 1.0 0 -10402772 true "" "plot mean [pollution] of patches"
+"punish" 1.0 0 -14070903 true "" "plot mean [punished / (ticks + 1) * 100 ]  of turtles"
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -641,7 +640,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.4
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
