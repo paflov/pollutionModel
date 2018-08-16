@@ -70,7 +70,9 @@ to pollute
 
     if (pollutionProbability > random-float 100) [
        set pollution pollution + wasteAmount
-       set punished punished + 1
+       if (random 100 > 20) [
+        set punished punished + 1
+      ]
     ]
 
     if (pollution > 100) [
@@ -275,7 +277,7 @@ surroundingWasteWeight
 surroundingWasteWeight
 0
 1
-0.0
+1.0
 0.01
 1
 NIL
@@ -290,7 +292,7 @@ punishedCounterWeight
 punishedCounterWeight
 0
 1
-1.0
+0.0
 0.01
 1
 NIL
@@ -305,7 +307,7 @@ punishedTurtlesWeight
 punishedTurtlesWeight
 0
 1
-1.0
+0.0
 0.01
 1
 NIL
