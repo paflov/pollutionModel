@@ -165,21 +165,6 @@ NIL
 HORIZONTAL
 
 SLIDER
-979
-97
-1177
-130
-punishmentSeverity
-punishmentSeverity
-0
-100
-0.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
 660
 140
 832
@@ -189,21 +174,6 @@ wasteAmount
 0
 20
 20.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-999
-53
-1177
-86
-agentPerception
-agentPerception
-0
-100
-0.0
 1
 1
 NIL
@@ -252,21 +222,11 @@ cleaningAmount
 cleaningAmount
 0
 1
-0.05
+0.0
 0.01
 1
 NIL
 HORIZONTAL
-
-TEXTBOX
-1024
-24
-1174
-42
-not implemented now:
-12
-0.0
-1
 
 TEXTBOX
 664
@@ -316,56 +276,56 @@ PENS
 "default" 1.0 0 -16777216 true "" "plot (count turtles with [punished > 0] * 100) / count turtles"
 
 TEXTBOX
-1473
-30
-1623
-48
+890
+24
+1040
+42
 Probability weights
 13
 0.0
 1
 
 SLIDER
-1473
-77
-1692
-110
+886
+56
+1105
+89
 surroundingWasteWeight
 surroundingWasteWeight
 0
 1
-1.0
+0.99
 0.01
 1
 NIL
 HORIZONTAL
 
 SLIDER
-1476
-126
-1686
-159
+887
+98
+1105
+131
 punishedCounterWeight
 punishedCounterWeight
 -1
 0
--0.28
+-0.51
 0.01
 1
 NIL
 HORIZONTAL
 
 SLIDER
-1484
-204
-1688
-237
+887
+141
+1105
+174
 punishedTurtlesWeight
 punishedTurtlesWeight
+-1
 0
-100
-50.0
-1
+-0.5
+0.01
 1
 NIL
 HORIZONTAL
@@ -716,7 +676,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.1
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
